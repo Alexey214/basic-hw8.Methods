@@ -1,24 +1,30 @@
 package com.company;
 
-import java.io.InputStream;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
+
         System.out.println("Задание №1:");
         sum1(2021);
+
         System.out.println("Задание №2:");
         sum2(2022, 1);                             //0 — iOS, 1 — Android
+
         System.out.println("Задание №3:");
         sum3(999);
+
         System.out.println("Задание №4:");
         sum4("asda");
+
         System.out.println("Задание №5:");
         sum5(new int[]{3, 2, 1, 6, 5});
 
+        System.out.println("Задание №6:");
+        int[] arr = generateRandomArray();
+        averageMonthlyCalc(arr);
     }
 
     public static void sum1(int year) {
@@ -83,6 +89,34 @@ public class Main {
             count--;
         }
         System.out.println(Arrays.toString(arr));
+    }
+
+    //Задача №6:
+    public static void averageMonthlyCalc(int[] arr) {
+        System.out.printf("Компания в месяц тратит %,d рублей\n", sum(arr));
+        System.out.printf("Средняя сумма трат за месяц составила %,.2f рублей\n", meanInDay(arr, sum(arr)));
+    }
+
+    public static int sum(int[] arr) {
+        int sum = 0;
+        for (int i : arr) {
+            sum += i;
+        }
+        return sum;
+    }
+
+    public static double meanInDay(int[] arr, int sum) {
+        double d = sum * 1.0 / arr.length;
+        return d;
+    }
+
+    public static int[] generateRandomArray() {
+        Random random = new Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
     }
 }
 
